@@ -42,5 +42,4 @@ public interface Service {
     List<User> getAllUsers();
 
     List<Subscription> getAllSubscriptionsByCondition(Predicate<Subscription> subscriptionPredicate);
-
-}
+    }

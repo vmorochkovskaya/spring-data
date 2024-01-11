@@ -113,15 +113,17 @@ public class SubscriberApplication implements CommandLineRunner {
         List<Log> logOrders = new ArrayList<>();
         messagesList.sort(Comparator.comparing(MessageResponse::getTimestamp));
         int sum = 0;
-        for (MessageResponse messageResponse : messagesList) {
-            LiquidOrder order = gson.fromJson(messageResponse.getOrder(), LiquidOrder.class);
-            sum += order.getVolume();
-            if (sum <= liquidThreshold) {
-                logOrders.add(new Log(Status.ACCEPTED, order));
-            } else {
-                logOrders.add(new Log(Status.REJECTED, order));
-            }
-        }
+        messagesList.forEach(() -> {
+//            for (MessageResponse messageResponse : messagesList) {
+                LiquidOrder order = gson.fromJson(messageResponse.getOrder(), LiquidOrder.class);
+                sum += order.getVolume();
+                if (sum <= liquidThreshold) {
+                    logOrders.add(new Log(Status.ACCEPTED, order));
+                } else {
+                    logOrders.add(new Log(Status.REJECTED, order));
+                }
+//            }
+        });
         return logOrders;
     }
 

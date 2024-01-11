@@ -1,14 +1,13 @@
 package jmp.dto.bank;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
 public class BankCard {
-    public String getNumber() {
-        return number;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
     private String number;
     private User user;
 
